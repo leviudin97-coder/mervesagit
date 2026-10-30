@@ -1,0 +1,37 @@
+/* Motion language: a quiet arrival, soft reveals, and tactile interaction. */
+@media (prefers-reduced-motion: no-preference) {
+  .hero h1 { animation: title-arrive 1.15s cubic-bezier(.16,1,.3,1) both; }
+  .hero-top { animation: arrive .8s .05s both; }
+  .hero-note { animation: arrive 1s .24s both; }
+  .hero-visual { animation: image-arrive 1.25s .18s cubic-bezier(.16,1,.3,1) both; }
+  .hero-visual > img { scale:1.07; will-change:translate; }
+  .stamp { animation: stamp-sway 9s 1.5s ease-in-out infinite; }
+  .reveal-pending { opacity:0; translate:0 28px; }
+  .reveal-pending.is-visible { opacity:1; translate:0 0; transition:opacity .85s var(--reveal-delay,0s),translate 1s cubic-bezier(.16,1,.3,1) var(--reveal-delay,0s); }
+  .art-image { transition:box-shadow .4s; }
+  .art:hover .art-image { box-shadow:0 15px 35px -24px #172c2760; }
+  .open-art { transition:rotate .35s,background .35s,color .35s; }
+  .art:hover .open-art { rotate:45deg; background:var(--red); color:var(--paper); }
+  .art-caption strong { transition:translate .3s; }
+  .art:hover .art-caption strong { translate:5px 0; }
+  .filters button { transition:background .25s,color .25s,border-color .25s; }
+  .practice-list article { transition:background .3s,padding .3s; }
+  .practice-list article:hover { background:#143eaa07; padding-left:12px; padding-right:12px; }
+  nav a:not(.nav-contact) { position:relative; }
+  nav a:not(.nav-contact)::after { content:''; position:absolute; left:0; right:0; bottom:-6px; height:1px; background:currentColor; scale:0 1; transform-origin:left; transition:scale .3s; }
+  nav a:not(.nav-contact):hover::after { scale:1 1; }
+  .nav-contact { transition:background .3s,color .3s; }
+  .nav-contact:hover { background:var(--blue);color:var(--paper); }
+  dialog[open] { animation:dialog-arrive .35s cubic-bezier(.16,1,.3,1) both; }
+  dialog[open]::backdrop { animation:backdrop-arrive .3s both; }
+  .about-photo .tag { transition:rotate .4s; }
+  .about-photo:hover .tag { rotate:5deg; }
+}
+.scroll-progress { position:fixed; top:0; left:0; width:100%; height:3px; background:var(--red); transform:scaleX(0); transform-origin:left; z-index:50; pointer-events:none; }
+@keyframes arrive { from {opacity:0;translate:0 18px} to {opacity:1;translate:0 0} }
+@keyframes title-arrive { from {opacity:0;translate:0 32px;filter:blur(5px)} to {opacity:1;translate:0 0;filter:blur(0)} }
+@keyframes image-arrive { from {opacity:0;clip-path:inset(10% 0 0 0);translate:0 22px} to {opacity:1;clip-path:inset(0);translate:0 0} }
+@keyframes stamp-sway { 0%,100% {transform:rotate(12deg)} 50% {transform:rotate(2deg)} }
+@keyframes dialog-arrive { from {opacity:0;transform:translateY(16px) scale(.98)} to {opacity:1;transform:translateY(0) scale(1)} }
+@keyframes backdrop-arrive { from {opacity:0} to {opacity:1} }
+@media (prefers-reduced-motion:reduce) { .reveal-pending {opacity:1;translate:none} .scroll-progress {display:none} }
